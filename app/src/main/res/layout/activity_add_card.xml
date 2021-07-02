@@ -5,35 +5,172 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="146dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:text="@string/amount"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+    <ScrollView
+        android:layout_width="413dp"
+        android:layout_height="636dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.434" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="1.0">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/description"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="245dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="198dp"
+                android:layout_marginRight="198dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/titleNewCard" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="46dp"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="198dp"
+                android:layout_marginRight="198dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/amount" />
+
+            <EditText
+                android:id="@+id/editTextNumberDecimal2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="200dp"
+                android:layout_marginRight="200dp"
+                android:layout_marginBottom="46dp"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="198dp"
+                android:layout_marginRight="198dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/firstName" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="46dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="198dp"
+                android:layout_marginRight="198dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/lastName" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="46dp"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="198dp"
+                android:layout_marginRight="198dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/phone" />
+
+            <EditText
+                android:id="@+id/editTextPhone2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="46dp"
+                android:inputType="phone" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginStart="43dp"
+                android:layout_marginLeft="43dp"
+                android:layout_marginEnd="198dp"
+                android:layout_marginRight="198dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/description" />
+
+            <EditText
+                android:id="@+id/editTextTextMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="103dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:layout_marginStart="46dp"
+                android:layout_marginLeft="46dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="46dp"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="97dp"
+                android:layout_marginLeft="97dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="36dp"
+                android:text="@string/addButton" />
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView10"
@@ -45,23 +182,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="293dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addButton"
-        tools:layout_editor_absoluteX="115dp"
-        tools:layout_editor_absoluteY="392dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
