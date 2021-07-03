@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,19 +16,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class LoginActivity extends AppCompatActivity{
 
-
     User user;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -73,6 +69,11 @@ public class LoginActivity extends AppCompatActivity{
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+//                        ERROR MESSAGE FOR WRONG PASSWORD
+//                        Log.d("errorMessage", "error message works");
+//                        TextView errorMessage = findViewById(R.id.errorMessage);
+//                        errorMessage.setVisibility(View.VISIBLE);
+                        //add a timeout for invisible
                     }
                 }
             }, new Response.ErrorListener() {
