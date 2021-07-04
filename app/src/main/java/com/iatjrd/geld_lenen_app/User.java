@@ -1,19 +1,16 @@
 package com.iatjrd.geld_lenen_app;
 
-public class User {
-    private String name;
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String email;
     private String token;
 
-    public User(String name, String email, String token){
-        this.name = name;
+    public User(String email, String token){
         this.email = email;
         this.token = token;
     }
 
-    public String getName(){
-        return this.name;
-    }
     public String getEmail(){
         return this.email;
     }

@@ -60,10 +60,10 @@ public class LoginActivity extends AppCompatActivity{
                 public void onResponse(JSONObject response) {
                     try {
 //                        Log.d("response", response.toString());
-                        String bearerToken = (String) response.get("access_token");
-//                        Log.d("token", bearerToken);
+                        String bearerToken = "Bearer " + (String) response.get("access_token");
+                        Log.d("token", bearerToken);
                         jsonBody.put("token", bearerToken);
-                        user = new User(email, password, bearerToken);
+                        user = new User(email, bearerToken);
 //                        Log.d("user", user.getToken());
                         toMain();
 
@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity{
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("Gefaald", error.getMessage());
+                    Log.e("Gefaald", error.getMessage());
                 }
             });
             requestQueue.add(loginRequest);
@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity{
 //        Log.d("UsertokenToMain", user.getToken());
         if(user.getToken() != null) {
             Intent toOverviewScreenIntent = new Intent(this, MainActivity.class);
+            toOverviewScreenIntent.putExtra("User", user);
             startActivity(toOverviewScreenIntent);
         }
     }
