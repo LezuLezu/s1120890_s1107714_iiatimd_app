@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.ContentCardHolder> {
+  
 //    private Loan[] loans;
     private List<Loan> loans;
 
@@ -28,6 +30,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         public TextView amount;
         public TextView lastName;
         public TextView firstName;
+
 
         public ContentCardHolder(View v){
             super(v);

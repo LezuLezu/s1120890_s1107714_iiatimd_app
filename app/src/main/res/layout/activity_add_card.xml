@@ -6,8 +6,9 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="413dp"
-        android:layout_height="636dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="414dp"
+        android:layout_height="584dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,24 +24,24 @@
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
                 android:layout_marginStart="43dp"
                 android:layout_marginLeft="43dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="198dp"
                 android:layout_marginRight="198dp"
                 android:layout_marginBottom="9dp"
                 android:text="@string/titleNewCard" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName12"
+                android:id="@+id/addCardInputTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_marginStart="46dp"
                 android:layout_marginLeft="46dp"
                 android:layout_marginEnd="57dp"
                 android:layout_marginRight="57dp"
                 android:layout_marginBottom="46dp"
+                android:ems="10"
                 android:inputType="textPersonName" />
 
             <TextView
@@ -55,15 +56,15 @@
                 android:text="@string/amount" />
 
             <EditText
-                android:id="@+id/editTextNumberDecimal2"
+                android:id="@+id/addCardInputAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_marginStart="43dp"
                 android:layout_marginLeft="43dp"
                 android:layout_marginEnd="200dp"
                 android:layout_marginRight="200dp"
                 android:layout_marginBottom="46dp"
+                android:ems="10"
                 android:inputType="numberDecimal" />
 
             <TextView
@@ -78,7 +79,7 @@
                 android:text="@string/firstName" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName11"
+                android:id="@+id/addCardInputFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="46dp"
@@ -101,7 +102,7 @@
                 android:text="@string/lastName" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName10"
+                android:id="@+id/addCardInputLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="46dp"
@@ -124,15 +125,15 @@
                 android:text="@string/phone" />
 
             <EditText
-                android:id="@+id/editTextPhone2"
+                android:id="@+id/addCardInputPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_marginStart="46dp"
                 android:layout_marginLeft="46dp"
                 android:layout_marginEnd="57dp"
                 android:layout_marginRight="57dp"
                 android:layout_marginBottom="46dp"
+                android:ems="10"
                 android:inputType="phone" />
 
             <TextView
@@ -147,20 +148,20 @@
                 android:text="@string/description" />
 
             <EditText
-                android:id="@+id/editTextTextMultiLine"
+                android:id="@+id/addCardInputReason"
                 android:layout_width="match_parent"
-                android:layout_height="103dp"
-                android:ems="10"
-                android:gravity="start|top"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="46dp"
                 android:layout_marginLeft="46dp"
                 android:layout_marginEnd="57dp"
                 android:layout_marginRight="57dp"
                 android:layout_marginBottom="46dp"
+                android:ems="10"
+                android:gravity="start|top"
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/addCardButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="97dp"
@@ -169,6 +170,17 @@
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="36dp"
                 android:text="@string/addButton" />
+
+            <Button
+                android:id="@+id/previousButton"
+                android:layout_width="91dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="160dp"
+                android:layout_marginLeft="160dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="36dp"
+                android:text="@string/previousButton" />
         </LinearLayout>
     </ScrollView>
 
@@ -180,6 +192,7 @@
         android:text="@string/newCard"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
