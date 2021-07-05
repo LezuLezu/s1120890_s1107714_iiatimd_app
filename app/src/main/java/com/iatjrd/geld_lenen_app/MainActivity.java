@@ -63,27 +63,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        Request Queue via singleton
             RequestQueue queue = VolleySingleton.getInstance(this.getApplicationContext()).
                     getRequestQueue();
-//            Request
             JsonArrayRequest apiCall = new JsonArrayRequest(
                     Request.Method.GET, BASE_URL, null, new Response.Listener<JSONArray>() {
                 @Override
-//                Response
                 public void onResponse(JSONArray response) {
-                    Log.d("apiResponse", response.toString());
-                    try {
-                        for(int i = 0; i < response.length(); i++){
+//                    Log.d("apiResponse", String.valueOf(response));
+                    try{
+//                        Loop over array
+                        for(int i = 0; i < response.length(); i ++){
+//                            fetch object from array
                             JSONObject apiRead = response.getJSONObject(i);
-//                        Fetch data from api response
+//                            fetch data from object
                             int id = (int) apiRead.get("id");
-                            Log.d("api id", String.valueOf(id));
                             String amount = (String) apiRead.get("amount");
-                            Log.d("api amount", String.valueOf(amount));
                             String firstName = (String) apiRead.get("firstName");
                             String lastName = (String) apiRead.get("lastName");
                             String title = (String) apiRead.get("title");
                             String createdAt = (String) apiRead.get("createdAt");
                             String phoneNumber = (String) apiRead.get("phoneNumber");
                             String reason;
+//                            Check for posible null vallues
                             if(!apiRead.isNull("reason")){
                                 reason = (String) apiRead.get("reason");
                             }else{
@@ -95,28 +94,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }else{
                                 payedOn = "payedOn";
                             }
+//                            fill array and add to class
                             loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
                                     reason, phoneNumber, payedOn));
-                            // Array vullen
-                            Log.d("Loans", String.valueOf(loans));
-                            Log.d("ApiRead", String.valueOf(loans.get(i).getReason()));
                         }
                         myAdapter.notifyDataSetChanged();
-
                     } catch (JSONException e) {
-//                        Catch json error
                         Log.e("jsonloop", e.toString());
-//                        e.printStackTrace();
                     }
                 }
-
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("gefaald main", error.getMessage());
-
+                    Log.e("volleyError", error.getMessage());
                 }
-            }){
+            }
+            ){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError{
                     Map<String, String> params = new HashMap<String, String>();
@@ -125,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     return params;
                 }
             };
-//            Add to queue
+//              Add to queue
             VolleySingleton.getInstance(this).addToRequestQueue(apiCall);
             myAdapter = new ContentCardAdapter(loans);
             recyclerView.setAdapter(myAdapter);
