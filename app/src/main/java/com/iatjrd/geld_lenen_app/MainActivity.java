@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button toAddCardButton = findViewById(R.id.addButton);
         toAddCardButton.setOnClickListener(this);
 
+//        Button payButton = findViewById(R.id.payButton);
+//        payButton.setOnClickListener(this::payClick);
+
         user = (User) getIntent().getExtras().getSerializable("User");
 
         recyclerView = findViewById(R.id.recyclerView);

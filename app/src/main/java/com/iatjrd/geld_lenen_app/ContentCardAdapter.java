@@ -29,6 +29,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         public TextView lastName;
         public TextView firstName;
         public TextView description;
+        public Button payButton;
 
 
         public ContentCardHolder(View v){
@@ -38,6 +39,14 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
             lastName = v.findViewById(R.id.cardLastName);
             firstName = v.findViewById(R.id.cardFirstName);
             description = v.findViewById(R.id.cardDescription);
+
+            payButton = v.findViewById(R.id.payButton);
+            payButton.setOnClickListener(this::payButtonClick);
+        }
+
+        //PAYED BUTTON IN THE RECYCLER VIEW
+        private void payButtonClick(View view) {
+            Log.d("payButton", "pay Clicked");
         }
     }
 
