@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Loan.class}, version = 6)
+@Database(entities = {Loan.class}, version = 10)
 public abstract class AppDatabase extends RoomDatabase{
     public abstract LoanDAO loanDAO();
 

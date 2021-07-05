@@ -125,11 +125,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             recyclerView.setAdapter(myAdapter);
 
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());
-            for(int i = 0; i< loans.size(); i++){
-                db.loanDAO().InsertLoan(loans.get(i));
-                String name = db.loanDAO().getAll().get(i).getTitle();
-                Log.d("dbTest", name);
-            }
 
 
         } catch (Exception e) {
@@ -139,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //    Load to dao?
         AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
         new Thread(new InsertLoanTask(db, loans)).start();
-//        new Thread(new GetLoanTask(db, this)).start();
+//        new Thread(new GetLoanTask(db)).start();
     }
 
     @Override
@@ -148,17 +143,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
-    }
-
-
-//   Doa function
-    public void procesData(Loan[] loans){
-        recyclerView = findViewById(R.id.recyclerView);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.hasFixedSize();
-
-        myAdapter = new ContentCardAdapter(Arrays.asList(loans));
-        recyclerView.setAdapter(myAdapter);
     }
 }

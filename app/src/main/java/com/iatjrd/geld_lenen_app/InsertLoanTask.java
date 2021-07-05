@@ -4,16 +4,16 @@ import java.util.List;
 
 public class InsertLoanTask implements Runnable{
     AppDatabase db;
-    Loan[] loans;
+    List<Loan> loans;
 
-    public InsertLoanTask(AppDatabase db, Loan[] loans){
+    public InsertLoanTask(AppDatabase db, List<Loan> loans){
         this.db = db;
         this.loans = loans;
     }
     @Override
     public void run() {
-        for(int i = 0; i < this.loans.length; i++){
-            db.loanDAO().InsertLoan(this.loans[i]);
+        for(int i = 0; i < this.loans.size(); i++){
+            db.loanDAO().InsertLoan(this.loans.get(i));
             int id = db.loanDAO().getAll().get(i).getId();
             String amount = db.loanDAO().getAll().get(i).getAmount();
             String firstName = db.loanDAO().getAll().get(i).getFirstName();
