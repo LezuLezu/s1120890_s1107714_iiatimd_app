@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             };
 //              Add to queue
             VolleySingleton.getInstance(this).addToRequestQueue(apiCall);
-            myAdapter = new ContentCardAdapter(loans);
+            myAdapter = new ContentCardAdapter(loans, user);
             recyclerView.setAdapter(myAdapter);
 
             AppDatabase db = AppDatabase.getInstance(getApplicationContext());
