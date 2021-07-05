@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,11 +16,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity{
+
     // User model class
     User user;
     // URL to api login
@@ -67,23 +70,29 @@ public class LoginActivity extends AppCompatActivity{
                 public void onResponse(JSONObject response) {
                     try {
 //                        Log.d("response", response.toString());
-                        String bearerToken = (String) response.get("access_token");
-//                        Log.d("token", bearerToken);
+                        String bearerToken = "Bearer " + (String) response.get("access_token");
+                        Log.d("token", bearerToken);
                         jsonBody.put("token", bearerToken);
-                        user = new User(email, password, bearerToken);
+                        user = new User(email, bearerToken);
 //                        Log.d("user", user.getToken());
                         toMain();
 
                     } catch (JSONException e) {
                         // catch error on response
                         e.printStackTrace();
+//                        ERROR MESSAGE FOR WRONG PASSWORD
+//                        Log.d("errorMessage", "error message works");
+//                        TextView errorMessage = findViewById(R.id.errorMessage);
+//                        errorMessage.setVisibility(View.VISIBLE);
+                        //add a timeout for invisible
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    // catch error on Volley
-                    Log.d("Gefaald", error.getMessage());
+
+                     // catch error on Volley
+                    Log.e("Gefaald login", error.getMessage());
                 }
             });
             requestQueue.add(loginRequest);
@@ -98,6 +107,7 @@ public class LoginActivity extends AppCompatActivity{
         if(user.getToken() != null) {
             // if user has a token go to loans overview
             Intent toOverviewScreenIntent = new Intent(this, MainActivity.class);
+            toOverviewScreenIntent.putExtra("User", user);
             startActivity(toOverviewScreenIntent);
         }
     }

@@ -9,6 +9,7 @@
     <string name="login">Inloggen</string>
     <string name="email">E-mail</string>
     <string name="password">Wachtwoord</string>
+    <string name="errorMessage">Het wachtwoord of email is fout ingevuld.</string>
     <string name="register">Registreren</string>
 
 <!--    REGISTER PAGE (ACTIVITY REGISTER)-->
