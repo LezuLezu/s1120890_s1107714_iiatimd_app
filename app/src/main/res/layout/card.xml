@@ -20,28 +20,30 @@
 
         <TextView
             android:id="@+id/cardTitle"
-            android:layout_width="172dp"
+            android:layout_width="136dp"
             android:layout_height="21dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:text="TextView"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/cardAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/cardFirstName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+            android:textSize="18sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintStart_toEndOf="@+id/cardTitle"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/cardLastName"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="19dp"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
@@ -50,18 +52,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.162"
-            app:layout_constraintStart_toEndOf="@+id/cardFirstName" />
+            app:layout_constraintStart_toEndOf="@+id/cardFirstName"
+            app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
 
         <TextView
             android:id="@+id/cardFirstName"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="19dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
 
         <Button
             android:id="@+id/button"
