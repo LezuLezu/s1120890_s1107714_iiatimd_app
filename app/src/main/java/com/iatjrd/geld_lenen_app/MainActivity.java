@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,12 +127,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             myAdapter = new ContentCardAdapter(loans);
             recyclerView.setAdapter(myAdapter);
 
-//            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "LoanDb").allowMainThreadQueries().build();
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+
 
         } catch (Exception e) {
 //            Catch request error
             e.printStackTrace();
         }
+        //    Load to dao?
+        AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
+        new Thread(new InsertLoanTask(db, loans)).start();
+//        new Thread(new GetLoanTask(db)).start();
     }
 
     @Override
