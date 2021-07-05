@@ -18,6 +18,7 @@
 
 <!--    ADD CARD PAGE (ACTIVITY ADD CARD)-->
     <string name="newCard">Nieuwe lening</string>
+    <string name="previousButton">Terug</string>
     <string name="titleNewCard">Titel</string>
     <string name="amount">Bedrag</string>
     <string name="firstName">Voornaam</string>

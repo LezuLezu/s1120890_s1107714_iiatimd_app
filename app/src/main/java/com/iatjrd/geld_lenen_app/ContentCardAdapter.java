@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.ContentCardHolder> {
+
     private Loan[] loans;
 
     public ContentCardAdapter(List<Loan> loans){
@@ -26,6 +28,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         public TextView lastName;
         public TextView firstName;
 
+
         public ContentCardHolder(View v){
             super(v);
 //            textView = v.findViewById(R.id.textView);
@@ -33,7 +36,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
             amount = v.findViewById(R.id.cardAmount);
             lastName = v.findViewById(R.id.cardLastName);
             firstName = v.findViewById(R.id.cardFirstName);
-
         }
     }
 
@@ -52,8 +54,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         holder.lastName.setText((CharSequence) loans[position].getLastName());
         holder.firstName.setText((CharSequence) loans[position].getFirstName());
         Log.d("In Adapter", "In Adapter after binding");
-
-
     }
 
     @Override

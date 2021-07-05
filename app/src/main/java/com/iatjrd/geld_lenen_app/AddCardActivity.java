@@ -43,8 +43,10 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
         user = (User) getIntent().getExtras().getSerializable("User");
 //        Fetch button
         Button addButton = findViewById(R.id.addCardButton);
+        Button previousButton = findViewById(R.id.previousButton);
 //         add listener to call method
         addButton.setOnClickListener(this::addClick);
+        previousButton.setOnClickListener(this::previousClick);
     }
 
     private void addClick(View view) {
@@ -127,12 +129,21 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
 
     }
 
+    //PREVIOUS BUTTON IS PRESSED
+    private void previousClick(View v){
+        Log.d("previousButton", "previous clicked");
+        Intent previousIntent = new Intent(this, MainActivity.class);
+        startActivity(previousIntent);
+    }
+
+    //SOMETHING INPUT WASNT GOOD SO TRY AGAIN
     private void toAdd() {
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
     }
 
+    //USER MADE A CARD AND IS SEND TO THE OVERVIEW PAGE
     private void toOverview() {
         Intent toOverviewScreenIntent = new Intent(this, MainActivity.class);
         toOverviewScreenIntent.putExtra("User", user);
