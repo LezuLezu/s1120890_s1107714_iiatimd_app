@@ -126,14 +126,12 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
     //PREVIOUS BUTTON IS PRESSED
     private void previousClick(View v){
         Log.d("previousButton", "previous clicked");
-        Intent previousIntent = new Intent(this, MainActivity.class);
-        startActivity(previousIntent);
+        finish();
     }
 
     //SOMETHING INPUT WASNT GOOD SO TRY AGAIN

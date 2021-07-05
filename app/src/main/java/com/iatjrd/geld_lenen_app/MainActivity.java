@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             JSONObject apiRead = response.getJSONObject(i);
 //                            fetch data from object
                             int id = (int) apiRead.get("id");
-                            String amount = (String) apiRead.get("amount");
+                            String amount = (String) "€" + apiRead.get("amount");
                             String firstName = (String) apiRead.get("firstName");
                             String lastName = (String) apiRead.get("lastName");
                             String title = (String) apiRead.get("title");
