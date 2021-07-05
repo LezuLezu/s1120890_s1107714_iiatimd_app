@@ -45,8 +45,6 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
         Button addButton = findViewById(R.id.addCardButton);
 //         add listener to call method
         addButton.setOnClickListener(this::addClick);
-
-
     }
 
     private void addClick(View view) {
@@ -95,10 +93,14 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
                                 Log.d("response", String.valueOf(response));
                                 String message = (String) response.get("message");
                                 Log.d("message", message);
-                                if(message == "Loan added succesfully"){
+                                if(message.equals("Loan added succesfully")){
+                                    Log.d("if", "toOverview()");
                                     toOverview();
-                                }else{
+                                }else if(message == "Adding loan failed"){
+                                    Log.d("failed", message);
+                                    Log.d("else", "toAdd()");
                                     toAdd();
+//                                    toOverview();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
