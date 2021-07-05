@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Build;
@@ -73,7 +74,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         for(int i = 0; i < response.length(); i++){
                             JSONObject apiRead = response.getJSONObject(i);
 //                        Fetch data from api response
+                            int id = (int) apiRead.get("id");
+                            Log.d("api id", String.valueOf(id));
                             String amount = (String) apiRead.get("amount");
+                            Log.d("api amount", String.valueOf(amount));
                             String firstName = (String) apiRead.get("firstName");
                             String lastName = (String) apiRead.get("lastName");
                             String title = (String) apiRead.get("title");
@@ -91,9 +95,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }else{
                                 payedOn = "payedOn";
                             }
-                            loans.add(new Loan(amount, firstName, lastName, title, createdAt,
+                            loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
                                     reason, phoneNumber, payedOn));
                             // Array vullen
+                            Log.d("Loans", String.valueOf(loans));
                             Log.d("ApiRead", String.valueOf(loans.get(i).getReason()));
                         }
                         myAdapter.notifyDataSetChanged();
@@ -108,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("gefaald", error.getMessage());
+                    Log.e("gefaald main", error.getMessage());
 
                 }
             }){
@@ -124,6 +129,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             VolleySingleton.getInstance(this).addToRequestQueue(apiCall);
             myAdapter = new ContentCardAdapter(loans);
             recyclerView.setAdapter(myAdapter);
+
+//            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "LoanDb").allowMainThreadQueries().build();
+
         } catch (Exception e) {
 //            Catch request error
             e.printStackTrace();

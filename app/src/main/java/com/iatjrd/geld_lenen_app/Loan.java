@@ -1,24 +1,41 @@
 package com.iatjrd.geld_lenen_app;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Loan implements Serializable {
+@Entity
+public class Loan{
+    @PrimaryKey
+    private int id;
+
+    @ColumnInfo
     private String amount;
+    @ColumnInfo
     private String firstName;
+    @ColumnInfo
     private String lastName;
+    @ColumnInfo
     private String title;
+    @ColumnInfo
     private String createdAt;
+    @ColumnInfo
     private String reason;
+    @ColumnInfo
     private String phoneNumber;
+    @ColumnInfo
     private String payedOn;
 
-    public Loan(String amount, String firstName, String lastName,
+    public Loan(int id, String amount, String firstName, String lastName,
                 String title, String createdAt, String reason,
                 String phoneNumber, String payedOn
                 ){
+        this.id = id;
         this.amount = amount;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,6 +46,7 @@ public class Loan implements Serializable {
         this.payedOn = payedOn;
     }
 
+    public int getId(){return this.id;}
     public String getAmount(){
         return this.amount;
     }

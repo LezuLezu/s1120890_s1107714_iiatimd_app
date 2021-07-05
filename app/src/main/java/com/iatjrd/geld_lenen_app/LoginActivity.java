@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity{
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("Gefaald", error.getMessage());
+                    Log.e("Gefaald login", error.getMessage());
                 }
             });
             requestQueue.add(loginRequest);

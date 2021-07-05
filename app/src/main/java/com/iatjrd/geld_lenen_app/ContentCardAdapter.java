@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.ContentCardHolder> {
-    private Loan[] loans;
+//    private Loan[] loans;
+    private List<Loan> loans;
 
     public ContentCardAdapter(List<Loan> loans){
-        this.loans = loans.toArray(new Loan[0]);
+        this.loans = loans;
+//        this.loans = loans.toArray(new Loan[0]);
+        Log.d("constructor", String.valueOf(loans));
     }
 
     public static class ContentCardHolder extends RecyclerView.ViewHolder{
@@ -33,7 +36,8 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
             amount = v.findViewById(R.id.cardAmount);
             lastName = v.findViewById(R.id.cardLastName);
             firstName = v.findViewById(R.id.cardFirstName);
-
+            Log.d("cardHolder", String.valueOf(title));
+            Log.d("cardHolder", String.valueOf(amount));
         }
     }
 
@@ -47,17 +51,19 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ContentCardHolder holder, int position) {
-        holder.title.setText((CharSequence) loans[position].getTitle());
-        holder.amount.setText((CharSequence) loans[position].getAmount());
-        holder.lastName.setText((CharSequence) loans[position].getLastName());
-        holder.firstName.setText((CharSequence) loans[position].getFirstName());
+        holder.title.setText(loans.get(position).getTitle());
+        holder.amount.setText(loans.get(position).getAmount());
+        holder.firstName.setText(loans.get(position).getFirstName());
+        holder.lastName.setText(loans.get(position).getLastName());
+//        holder.title.setText((CharSequence) loans[position].getTitle());
+//        holder.amount.setText((CharSequence) loans[position].getAmount());
+//        holder.lastName.setText((CharSequence) loans[position].getLastName());
+//        holder.firstName.setText((CharSequence) loans[position].getFirstName());
         Log.d("In Adapter", "In Adapter after binding");
-
-
     }
 
     @Override
     public int getItemCount() {
-        return loans.length;
+        return loans.size();
     }
 }
