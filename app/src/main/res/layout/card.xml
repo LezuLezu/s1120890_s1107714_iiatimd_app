@@ -2,13 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="300dp"
-    android:layout_height="100dp"
+    android:layout_height="200dp"
     android:layout_marginStart="50dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="50dp"
     android:layout_marginEnd="50dp"
     android:layout_marginRight="10dp"
-    android:layout_marginBottom="50dp"
+    android:layout_marginBottom="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:layout_height="21dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,16 +34,17 @@
             android:id="@+id/cardAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="TextView"
             android:textSize="18sp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintEnd_toStartOf="@+id/deleteButton"
+            app:layout_constraintHorizontal_bias="0.548"
             app:layout_constraintStart_toEndOf="@+id/cardTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/cardLastName"
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="19dp"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
@@ -51,24 +52,25 @@
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.162"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toEndOf="@+id/cardFirstName"
-            app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/cardTitle"
+            app:layout_constraintVertical_bias="0.218" />
 
         <TextView
             android:id="@+id/cardFirstName"
-            android:layout_width="60dp"
+            android:layout_width="80dp"
             android:layout_height="19dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cardDescription"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/cardTitle"
+            app:layout_constraintVertical_bias="0.415" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/deleteButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="10dp"
@@ -83,6 +85,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.07" />
+
+        <TextView
+            android:id="@+id/cardDescription"
+            android:layout_width="264dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="TextView"
+            android:maxLength="90"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
