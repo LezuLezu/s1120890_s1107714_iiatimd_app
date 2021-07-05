@@ -59,7 +59,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
             description = v.findViewById(R.id.cardDescription);
 
             payButton = v.findViewById(R.id.payButton);
-            laonId = v.findViewById(R.id.cardId);
         }
     }
 
@@ -80,7 +79,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         holder.lastName.setText(loans.get(position).getLastName());
         holder.description.setText(loans.get(position).getReason());
         holder.payButton.setOnClickListener((view) -> payButtonClick(view, loans.get(position)));
-        holder.laonId.setText(String.valueOf(loans.get(position).getId()));
 
     }
 //  Button
