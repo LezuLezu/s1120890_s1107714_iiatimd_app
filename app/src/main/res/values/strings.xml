@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Geld_Lenen_App</string>
+    <string name="app_name">Uitgeleende Euro\'s</string>
 
 <!--    OVERVIEW PAGE (ACTIVITY MAIN)-->
     <string name="overview">Overzicht</string>
