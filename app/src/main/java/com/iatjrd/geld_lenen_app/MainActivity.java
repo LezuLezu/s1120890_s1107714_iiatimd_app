@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Log.d("onClickTest", "add clicked");
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
+        toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
     }
 }
