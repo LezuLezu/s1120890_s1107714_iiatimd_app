@@ -14,8 +14,9 @@ public interface LoanDAO {
     List<Loan> getAll();
 
     @Insert
-    void InsertLoan(Loan loan);
+    void InsertLoan(Loan loans);
 
     @Delete
     void delete(Loan loan);
+
 }

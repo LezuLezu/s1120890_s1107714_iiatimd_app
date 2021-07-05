@@ -123,7 +123,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             myAdapter = new ContentCardAdapter(loans);
             recyclerView.setAdapter(myAdapter);
 
-//            AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "LoanDb").allowMainThreadQueries().build();
+            AppDatabase db = AppDatabase.getInstance(getApplicationContext());
+            for(int i = 0; i< loans.size(); i++){
+                db.loanDAO().InsertLoan(loans.get(i));
+                String name = db.loanDAO().getAll().get(i).getTitle();
+                Log.d("dbTest", name);
+            }
+
 
         } catch (Exception e) {
 //            Catch request error
