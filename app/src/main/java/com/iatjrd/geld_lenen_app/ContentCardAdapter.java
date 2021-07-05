@@ -36,8 +36,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
     public ContentCardAdapter(List<Loan> loans, User user){
         this.loans = loans;
         this.user = user;
-
-//        Log.d("constructor", String.valueOf(loans));
     }
 
     public static class ContentCardHolder extends RecyclerView.ViewHolder{
@@ -83,9 +81,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
     }
 //  Button
     private void payButtonClick(View view, Loan loan) {
-        Log.d("payButton", "pay Clicked");
-//        Loan loan = getLoanData();
-        Log.d("payButtonClick", String.format("loanid: %d", loan.getId()));
+
 //        Url to alter loan to payed
         String PAY_URL = "https://geld-lenen.herokuapp.com/api/user/pay-loan/" + String.valueOf(loan.getId());
         try {
@@ -97,7 +93,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        Log.d("PayResponse", String.valueOf(response));
                         String message = (String) response.get("message");
                         backToOverview(view.getContext());
                     } catch (JSONException e) {
@@ -115,7 +110,6 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Authorization", user.getToken());
-                    //                    Log.d("header", params.toString());
                     return params;
                 }
             };

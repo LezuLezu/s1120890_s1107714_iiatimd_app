@@ -50,7 +50,6 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
     }
 
     private void addClick(View view) {
-        Log.d("addClick", "Add button Clicked");
 
 //        Fetch input fields
         EditText titleInput = (EditText) findViewById(R.id.addCardInputTitle);
@@ -92,15 +91,10 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
-                                Log.d("response", String.valueOf(response));
                                 String message = (String) response.get("message");
-                                Log.d("message", message);
                                 if(message.equals("Loan added succesfully")){
-                                    Log.d("if", "toOverview()");
                                     toOverview();
                                 }else if(message == "Adding loan failed"){
-                                    Log.d("failed", message);
-                                    Log.d("else", "toAdd()");
                                     toAdd();
 //                                    toOverview();
                                 }
@@ -111,14 +105,12 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("Gefaald", error.getMessage());
                 }
             }){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Authorization", user.getToken());
-//                    Log.d("header", params.toString());
                     return params;
                 }
             };
@@ -130,7 +122,6 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
 
     //PREVIOUS BUTTON IS PRESSED
     private void previousClick(View v){
-        Log.d("previousButton", "previous clicked");
         finish();
     }
 

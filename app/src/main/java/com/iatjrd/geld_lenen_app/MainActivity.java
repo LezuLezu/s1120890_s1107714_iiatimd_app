@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button toAddCardButton = findViewById(R.id.addButton);
         toAddCardButton.setOnClickListener(this);
 
-//        Button payButton = findViewById(R.id.payButton);
-//        payButton.setOnClickListener(this::payClick);
-
         user = (User) getIntent().getExtras().getSerializable("User");
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -71,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Request.Method.GET, BASE_URL, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
-//                    Log.d("apiResponse", String.valueOf(response));
                     try{
 //                        Loop over array
                         for(int i = 0; i < response.length(); i ++){
@@ -118,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public Map<String, String> getHeaders() throws AuthFailureError{
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Authorization", user.getToken());
-//                    Log.d("header", params.toString());
                     return params;
                 }
             };
@@ -136,13 +131,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //    Load to dao?
         AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
-        new Thread(new InsertLoanTask(db, loans)).start();
-//        new Thread(new GetLoanTask(db)).start();
+//        new Thread(new InsertLoanTask(db, loans)).start();
+        new Thread(new GetLoanTask(db)).start();
     }
 
     @Override
     public void onClick(View v) {
-        Log.d("onClickTest", "add clicked");
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);

@@ -57,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity{
             jsonBody.put("email", email);
             jsonBody.put("password", password);
             jsonBody.put("password_confirmation", passwordConf);
-            Log.d("jsonBody", jsonBody.toString());
 
             // Make request
             JsonObjectRequest registerRequest = new JsonObjectRequest(
@@ -66,9 +65,7 @@ public class RegisterActivity extends AppCompatActivity{
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
-                                Log.d("response", response.toString());
                                 String message = (String) response.get("message");
-                                Log.d("message", message);
                                 if (message != null) {
                                     toLogin();
                                 } else {
@@ -76,7 +73,6 @@ public class RegisterActivity extends AppCompatActivity{
                                 }
                             } catch (JSONException e) {
                                 // catch response errors
-                                Log.d("JsonEx", e.toString());
                                 toRegister();
                             }
                         }
@@ -84,7 +80,6 @@ public class RegisterActivity extends AppCompatActivity{
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     // Volley error listener
-                    Log.d("Gefaald", error.getMessage());
                     toRegister();
                 }
             }
@@ -93,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity{
             requestQueue.add(registerRequest);
         } catch (JSONException e) {
             // Catch error of making jsonBody
-            Log.d("JsonEx", e.toString());
             toRegister();
         }
 
