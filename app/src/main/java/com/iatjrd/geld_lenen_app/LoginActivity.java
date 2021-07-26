@@ -1,5 +1,6 @@
 package com.iatjrd.geld_lenen_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -81,12 +83,14 @@ public class LoginActivity extends AppCompatActivity{
                 public void onErrorResponse(VolleyError error) {
                      // catch error on Volley
                     Log.e("Gefaald login", error.getMessage());
+                    somethingWentWrong();
                 }
             });
             requestQueue.add(loginRequest);
         } catch (JSONException e) {
             // catch error on creating jsonbody
             e.printStackTrace();
+            somethingWentWrong();
         }
     }
 
@@ -96,6 +100,8 @@ public class LoginActivity extends AppCompatActivity{
             Intent toOverviewScreenIntent = new Intent(this, MainActivity.class);
             toOverviewScreenIntent.putExtra("User", user);
             startActivity(toOverviewScreenIntent);
+        }else{
+            somethingWentWrong();
         }
     }
 
@@ -104,5 +110,33 @@ public class LoginActivity extends AppCompatActivity{
         // go to register page
         Intent toRegisterScreenIntent = new Intent(this, RegisterActivity.class);
         startActivity(toRegisterScreenIntent);
+    }
+
+    private void somethingWentWrong(){
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Er ging iets mis :(");
+//                        Set dialog message
+        alertDialog.setMessage("Er ging iets mis met het inloggen, probeer het nog een keertje.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        toLogin();
+                    }
+                });
+        alertDialog.show();
+    }
+    private void toLogin() {
+        // Load login page
+        Log.d("register", "succes");
+        Intent toLoginScreenIntent = new Intent(this, LoginActivity.class);
+        startActivity(toLoginScreenIntent);
     }
 }

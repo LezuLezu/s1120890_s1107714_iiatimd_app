@@ -151,8 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(toAddCardIntent);
     }
 
-    public void noLoansDialog(){
-        Log.d("NoLoans", "Geen leningen ifElse");
+    private void noLoansDialog(){
 //                        Create dialogBox
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
 //                        Set dialogBox title
@@ -160,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        Set dialog message
         alertDialog.setMessage("Je hebt momenteel geen leningen openstaan! \n" +
                 "Heb je net wat geld uitgeleend? Voeg dan de lening toe na het sluiten van dit bericht.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
 //                        Set button with listener to close dialog
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
                 new DialogInterface.OnClickListener() {
