@@ -14,9 +14,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/card_border">
+        android:layout_height="match_parent">
 
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="297dp"
+            android:layout_height="59dp"
+            android:background="@drawable/card_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="298dp"
+            android:layout_height="142dp"
+            android:layout_marginTop="121dp"
+            android:background="@drawable/card_body"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/cardTitle"
@@ -26,6 +47,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/payButton"
             app:layout_constraintHorizontal_bias="0.548"
@@ -78,7 +101,7 @@
             app:icon="@android:drawable/ic_menu_delete"
             app:iconPadding="8dp"
             app:iconSize="20dp"
-            app:iconTint="#000000"
+            app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.98"
