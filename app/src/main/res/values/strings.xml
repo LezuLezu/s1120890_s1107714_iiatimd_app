@@ -28,4 +28,11 @@
     <string name="description">Omschrijving</string>
     <string name="addButton">Toevoegen</string>
 
+<!--    SHOW CARD PAGE  -->
+    <string name="created">Aangemaakt op: </string>
+    <string name="loaned"> Uitgeleend aan:</string>
+
+<!--    CARD    -->
+    <string name="moreInfo">Meer info</string>
+
 </resources>
