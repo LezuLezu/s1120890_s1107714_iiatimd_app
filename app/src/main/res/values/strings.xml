@@ -31,6 +31,7 @@
 <!--    SHOW CARD PAGE  -->
     <string name="created">Aangemaakt op: </string>
     <string name="loaned"> Uitgeleend aan:</string>
+    <string name="mobile">Telefoonnummer:</string>
 
 <!--    CARD    -->
     <string name="moreInfo">Meer info</string>
