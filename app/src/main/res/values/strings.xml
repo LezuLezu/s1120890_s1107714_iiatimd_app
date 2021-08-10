@@ -4,6 +4,7 @@
 <!--    OVERVIEW PAGE (ACTIVITY MAIN)-->
     <string name="overview">Overzicht</string>
     <string name="addCard">+</string>
+    <string name="logout">Uitloggen</string>
 
 <!--    LOGIN PAGE (ACTIVITY LOGIN)-->
     <string name="login">Inloggen</string>
