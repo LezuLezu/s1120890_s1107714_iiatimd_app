@@ -3,6 +3,7 @@ package com.iatjrd.geld_lenen_app;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +50,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         public TextView description;
         public Button payButton;
         public TextView laonId;
+        public Button moreInfoButton;
 
 
         public ContentCardHolder(View v){
@@ -59,6 +62,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
             description = v.findViewById(R.id.cardDescription);
 
             payButton = v.findViewById(R.id.payButton);
+            moreInfoButton = v.findViewById(R.id.moreInfo);
         }
     }
 
@@ -79,9 +83,10 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         holder.lastName.setText(loans.get(position).getLastName());
         holder.description.setText(loans.get(position).getReason());
         holder.payButton.setOnClickListener((view) -> payButtonClick(view, loans.get(position)));
-
+        holder.moreInfoButton.setOnClickListener((view -> moreInfoClick(view, loans.get(position))));
     }
-//  Button
+
+    //  PayButton
     private void payButtonClick(View view, Loan loan) {
 
 //        Url to alter loan to payed
@@ -150,6 +155,14 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         alertDialog.show();
     }
 
+//    More info button
+private void moreInfoClick(View view, Loan loan) {
+    Context context = view.getContext();
+    Intent toShowCard = new Intent(context, ShowCardActivity.class);
+    toShowCard.putExtra("Loan", loan.getId());
+    toShowCard.putExtra("User", user);
+    context.startActivity(toShowCard);
+}
 
     @Override
     public int getItemCount() {
