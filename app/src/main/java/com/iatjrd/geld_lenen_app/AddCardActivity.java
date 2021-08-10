@@ -1,5 +1,6 @@
 package com.iatjrd.geld_lenen_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -93,10 +95,9 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
                             try {
                                 String message = (String) response.get("message");
                                 if(message.equals("Loan added succesfully")){
-                                    toOverview();
+                                    somethingWentRight();
                                 }else if(message == "Adding loan failed"){
-                                    toAdd();
-//                                    toOverview();
+                                    somethingWentWrong();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -130,12 +131,57 @@ public class AddCardActivity extends AppCompatActivity implements Serializable {
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
+        somethingWentWrong();
     }
 
     //USER MADE A CARD AND IS SEND TO THE OVERVIEW PAGE
-    private void toOverview() {
+    private void toOverview(){
         Intent toOverviewScreenIntent = new Intent(this, MainActivity.class);
         toOverviewScreenIntent.putExtra("User", user);
         startActivity(toOverviewScreenIntent);
+    }
+
+    private void somethingWentRight() {
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(AddCardActivity.this).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Lening toegevoegd!");
+//                        Set dialog message
+        alertDialog.setMessage("Je lening is toegevoegd, als je deze melding sluit ga je terug naar het overzicht van je openstaande leningen.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        toOverview();
+                    }
+                });
+        alertDialog.show();
+    }
+
+    private void somethingWentWrong(){
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(AddCardActivity.this).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Er ging iets mis :(");
+//                        Set dialog message
+        alertDialog.setMessage("Er ging iets mis met het aanmaken van je lening, probeer het nog een keertje.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        toAdd();
+                    }
+                });
+        alertDialog.show();
     }
 }

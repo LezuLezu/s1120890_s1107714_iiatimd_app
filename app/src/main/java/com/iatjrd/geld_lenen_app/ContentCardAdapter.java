@@ -1,6 +1,7 @@
 package com.iatjrd.geld_lenen_app;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -99,7 +101,7 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
                 public void onResponse(JSONObject response) {
                     try {
                         String message = (String) response.get("message");
-                        backToOverview(view.getContext());
+                        somethingWentRight(view.getContext());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -130,6 +132,27 @@ public class ContentCardAdapter extends RecyclerView.Adapter<ContentCardAdapter.
         toOverViewIntent.putExtra("User", user);
         context.startActivity(toOverViewIntent);
 
+    }
+    private void somethingWentRight(Context view){
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(view).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Je lening is terugbetaald :)");
+//                        Set dialog message
+        alertDialog.setMessage("Top! Je lening is betaald en hier verwijderd.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        backToOverview(view);
+                    }
+                });
+        alertDialog.show();
     }
 
 //    More info button

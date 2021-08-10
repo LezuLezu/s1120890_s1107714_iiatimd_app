@@ -7,6 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cardBorder">#87b9ff</color>
     <color name="red">#ff1313</color>
+
+<!--    COLORS FOR THE CARDS-->
+<!--    <color name="cardBorder">#87b9ff</color>-->
+    <color name="cardHeader">#1634ff</color>
+    <color name="cardBody">#a9cdff</color>
+
+<!--    LOGIN PAGE-->
+    <color name="inputField">#d5dadc</color>
+    <color name="stroke">#000000</color>
 </resources>

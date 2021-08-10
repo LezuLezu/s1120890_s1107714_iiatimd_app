@@ -2,11 +2,13 @@ package com.iatjrd.geld_lenen_app;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -68,39 +70,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Request.Method.GET, BASE_URL, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
-                    try{
+                    // If theres no loans yet; show a popup with info
+                    if (response.length() == 0) {
+//                        Go to dialog function
+                        noLoansDialog();
+                    } else {
+                        try {
 //                        Loop over array
-                        for(int i = 0; i < response.length(); i ++){
-//                            fetch object from array
-                            JSONObject apiRead = response.getJSONObject(i);
-//                            fetch data from object
-                            int id = (int) apiRead.get("id");
-                            String amount = (String) "€" + apiRead.get("amount");
-                            String firstName = (String) apiRead.get("firstName");
-                            String lastName = (String) apiRead.get("lastName");
-                            String title = (String) apiRead.get("title");
-                            String createdAt = (String) apiRead.get("createdAt");
-                            String phoneNumber = (String) apiRead.get("phoneNumber");
-                            String reason;
-//                            Check for posible null vallues
-                            if(!apiRead.isNull("reason")){
-                                reason = (String) apiRead.get("reason");
-                            }else{
-                                reason = "Reason";
+                            for (int i = 0; i < response.length(); i++) {
+                                //                            fetch object from array
+                                JSONObject apiRead = response.getJSONObject(i);
+                                //                            fetch data from object
+                                int id = (int) apiRead.get("id");
+                                String amount = (String) "€" + apiRead.get("amount");
+                                String firstName = (String) apiRead.get("firstName");
+                                String lastName = (String) apiRead.get("lastName");
+                                String title = (String) apiRead.get("title");
+                                String createdAt = (String) apiRead.get("createdAt");
+                                String phoneNumber = (String) apiRead.get("phoneNumber");
+                                String reason;
+                                //                            Check for posible null vallues
+                                if (!apiRead.isNull("reason")) {
+                                    reason = (String) apiRead.get("reason");
+                                } else {
+                                    reason = "Reason";
+                                }
+                                String payedOn;
+                                if (!apiRead.isNull("payedOn")) {
+                                    payedOn = (String) apiRead.get("payedOn");
+                                } else {
+                                    payedOn = "payedOn";
+                                }
+                                //                            fill array and add to class
+                                loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
+                                        reason, phoneNumber, payedOn));
                             }
-                            String payedOn;
-                            if(!apiRead.isNull("payedOn")){
-                                payedOn = (String) apiRead.get("payedOn");
-                            }else{
-                                payedOn = "payedOn";
-                            }
-//                            fill array and add to class
-                            loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
-                                    reason, phoneNumber, payedOn));
+
+                            myAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            Log.e("jsonloop", e.toString());
                         }
-                        myAdapter.notifyDataSetChanged();
-                    } catch (JSONException e) {
-                        Log.e("jsonloop", e.toString());
                     }
                 }
             }, new Response.ErrorListener() {
@@ -131,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //    Load to dao?
         AppDatabase db = AppDatabase.getInstance(this.getApplicationContext());
-//        new Thread(new InsertLoanTask(db, loans)).start();
-        new Thread(new GetLoanTask(db)).start();
+        new Thread(new InsertLoanTask(db, loans)).start();
+//        new Thread(new GetLoanTask(db)).start();
     }
 
     @Override
@@ -141,4 +150,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
     }
+
+    private void noLoansDialog(){
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Geen leningen!");
+//                        Set dialog message
+        alertDialog.setMessage("Je hebt momenteel geen leningen openstaan! \n" +
+                "Heb je net wat geld uitgeleend? Voeg dan de lening toe na het sluiten van dit bericht.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
 }

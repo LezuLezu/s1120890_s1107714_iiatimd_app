@@ -1,5 +1,6 @@
 package com.iatjrd.geld_lenen_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -67,9 +69,9 @@ public class RegisterActivity extends AppCompatActivity{
                             try {
                                 String message = (String) response.get("message");
                                 if (message != null) {
-                                    toLogin();
+                                    somethingWentRight();
                                 } else {
-                                    toRegister();
+                                    somethingWentWrong();
                                 }
                             } catch (JSONException e) {
                                 // catch response errors
@@ -106,6 +108,49 @@ public class RegisterActivity extends AppCompatActivity{
         Log.d("register", "succes");
         Intent toLoginScreenIntent = new Intent(this, LoginActivity.class);
         startActivity(toLoginScreenIntent);
+    }
+
+    private void somethingWentWrong(){
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Er ging iets mis :(");
+//                        Set dialog message
+        alertDialog.setMessage("Er ging iets mis met het aanmaken van je account, probeer het nog een keertje.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        toRegister();
+                    }
+                });
+        alertDialog.show();
+    }
+    private void somethingWentRight(){
+//                        Create dialogBox
+        AlertDialog alertDialog = new AlertDialog.Builder(RegisterActivity.this).create();
+//                        Set dialogBox title
+        alertDialog.setTitle("Je account is aangemaakt!");
+//                        Set dialog message
+        alertDialog.setMessage("Na het sluiten van de melding wordt je doorgestuurd naar de inlogpagina.");
+//        Disable cancel and out of box closing
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+//                        Set button with listener to close dialog
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sluit melding",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        toLogin();
+                    }
+                });
+        alertDialog.show();
     }
 }
 
