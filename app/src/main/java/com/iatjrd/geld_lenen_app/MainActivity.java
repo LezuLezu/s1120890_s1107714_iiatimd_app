@@ -18,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -64,8 +65,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
 
-//        Create notifycation channel for loan amount
+//        Create notification channel for loan amount
         createNotificationChannel();
+//        send notification
+
+        loanNotification();
+
 
         List<Loan> loans = new ArrayList<Loan>();
 
@@ -112,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 //                            fill array and add to class
                                 loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
                                         reason, phoneNumber, payedOn));
-                                loanNotification();
 
                             }
 
@@ -173,10 +177,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setAutoCancel(true);
 //        Build notification
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-// notificationId is a unique int for each notification that you must define
-        notificationManager.notify(0, builder.build());
-
+//      Handler to wait X seconds to send notification
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // send notification
+                notificationManager.notify(0, builder.build());
+            }
+        }, 30000);
     }
+
     private void createNotificationChannel() {
         // Create the NotificationChannel, to guide notifications
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
