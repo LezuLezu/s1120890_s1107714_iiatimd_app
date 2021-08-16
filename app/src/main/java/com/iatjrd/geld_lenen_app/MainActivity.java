@@ -4,10 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -58,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
 
+//        Create notifycation channel for loan amount
+        createNotificationChannel();
 
         List<Loan> loans = new ArrayList<Loan>();
 
@@ -104,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 //                            fill array and add to class
                                 loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
                                         reason, phoneNumber, payedOn));
+                                loanNotification();
+
                             }
 
                             myAdapter.notifyDataSetChanged();
@@ -143,6 +153,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Thread(new InsertLoanTask(db, loans)).start();
 //        new Thread(new GetLoanTask(db)).start();
     }
+
+    private void loanNotification() {
+//        Create intent to open when notification is pressed
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("User", user);
+//        Attach intent to notification
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+//        Notification content
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "LoansAmount")
+                .setSmallIcon(R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background)
+                .setContentTitle("Uitgeleende Euro's")
+                .setContentText("Je hebt nog leningen openstaan! Kijk snel van wie je nog geld terug moet krijgen.")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("Je hebt nog leningen openstaan! Kijk snel van wie je nog geld terug moet krijgen."))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+//        Build notification
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+// notificationId is a unique int for each notification that you must define
+        notificationManager.notify(0, builder.build());
+
+    }
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, to guide notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("LoansAmount", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
