@@ -9,10 +9,15 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#ff1313</color>
 
+<!--    BACKGROUND COLOR-->
+    <color name="backgroundColor">#dcebff</color>
+
+    <color name="buttonColor">#87b9ff</color>
+
 <!--    COLORS FOR THE CARDS-->
 <!--    <color name="cardBorder">#87b9ff</color>-->
     <color name="cardHeader">#1634ff</color>
-    <color name="cardBody">#a9cdff</color>
+    <color name="cardBody">#ffffff</color>
 
 <!--    LOGIN PAGE-->
     <color name="inputField">#dee2e4</color>
