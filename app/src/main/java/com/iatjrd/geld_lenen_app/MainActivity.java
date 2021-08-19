@@ -44,8 +44,36 @@ public class MainActivity extends AppCompatActivity{
         Button toAddCardButton = findViewById(R.id.addButton);
         toAddCardButton.setOnClickListener(this::addCardClick);
 
+
+        //LOGOUT BUTTON
         Button logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(this::logoutClick);
+        Intent in = getIntent();
+        String string = in.getStringExtra("message");
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("logout", "new Logout logout_icon.png");
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Uitloggen bevestigen").
+                        setMessage("Weet u zeker dat u wil uitloggen?");
+                builder.setPositiveButton("Ja",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent logoutIntent = new Intent(getApplicationContext(),
+                                        LoginActivity.class);
+                                startActivity(logoutIntent);
+                            }
+                        });
+                builder.setNegativeButton("Nee",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
 
         user = (User) getIntent().getExtras().getSerializable("User");
 
@@ -145,13 +173,6 @@ public class MainActivity extends AppCompatActivity{
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
-    }
-
-    //LOGOUT BUTTON CLICKED
-    public void logoutClick(View v){
-        Log.d("logout", "CLICKED");
-        Intent toLoginScreenIntent = new Intent(this, LoginActivity.class);
-        startActivity(toLoginScreenIntent);
     }
 
     private void noLoansDialog(){
