@@ -36,5 +36,7 @@
 
 <!--    CARD    -->
     <string name="moreInfo">Meer info</string>
+    <string name="channel_name">notifycation</string>
+    <string name="channel_description">loanAmount</string>
 
 </resources>

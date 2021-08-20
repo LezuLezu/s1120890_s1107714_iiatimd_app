@@ -2,12 +2,19 @@ package com.iatjrd.geld_lenen_app;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -82,6 +89,12 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.hasFixedSize();
 
+//        Create notification channel for loan amount
+        createNotificationChannel();
+//        send notification
+
+        loanNotification();
+
 
         List<Loan> loans = new ArrayList<Loan>();
 
@@ -128,6 +141,7 @@ public class MainActivity extends AppCompatActivity{
                                 //                            fill array and add to class
                                 loans.add(new Loan(id, amount, firstName, lastName, title, createdAt,
                                         reason, phoneNumber, payedOn));
+
                             }
 
                             myAdapter.notifyDataSetChanged();
@@ -167,6 +181,52 @@ public class MainActivity extends AppCompatActivity{
         new Thread(new InsertLoanTask(db, loans)).start();
 //        new Thread(new GetLoanTask(db)).start();
     }
+
+    private void loanNotification() {
+//        Create intent to open when notification is pressed
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("User", user);
+//        Attach intent to notification
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+//        Notification content
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "LoansAmount")
+                .setSmallIcon(R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background)
+                .setContentTitle("Uitgeleende Euro's")
+                .setContentText("Heb je nog leningen openstaan?")
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("Heb je nog leningen openstaan? Check het snel!"))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+//        Build notification
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+//      Handler to wait X seconds to send notification
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // send notification
+                notificationManager.notify(0, builder.build());
+            }
+        }, 30000);
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, to guide notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("LoansAmount", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 
     //ADD CARD BUTTON CLICKED
     public void addCardClick(View v) {
