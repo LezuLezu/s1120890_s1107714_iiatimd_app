@@ -169,9 +169,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "LoansAmount")
                 .setSmallIcon(R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_background)
                 .setContentTitle("Uitgeleende Euro's")
-                .setContentText("Je hebt nog leningen openstaan! Kijk snel van wie je nog geld terug moet krijgen.")
+                .setContentText("Heb je nog leningen openstaan?")
                 .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("Je hebt nog leningen openstaan! Kijk snel van wie je nog geld terug moet krijgen."))
+                        .bigText("Heb je nog leningen openstaan? Check het snel!"))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
