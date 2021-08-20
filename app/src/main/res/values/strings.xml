@@ -4,6 +4,7 @@
 <!--    OVERVIEW PAGE (ACTIVITY MAIN)-->
     <string name="overview">Overzicht</string>
     <string name="addCard">+</string>
+    <string name="logout">Uitloggen</string>
 
 <!--    LOGIN PAGE (ACTIVITY LOGIN)-->
     <string name="login">Inloggen</string>
@@ -27,5 +28,15 @@
     <string name="phone">Telefoonnummer</string>
     <string name="description">Omschrijving</string>
     <string name="addButton">Toevoegen</string>
+
+<!--    SHOW CARD PAGE  -->
+    <string name="created">Aangemaakt op: </string>
+    <string name="loaned"> Uitgeleend aan:</string>
+    <string name="mobile">Telefoonnummer:</string>
+
+<!--    CARD    -->
+    <string name="moreInfo">Meer info</string>
+    <string name="channel_name">notifycation</string>
+    <string name="channel_description">loanAmount</string>
 
 </resources>

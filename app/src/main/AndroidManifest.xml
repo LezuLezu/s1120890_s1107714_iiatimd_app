@@ -22,6 +22,7 @@
         <activity android:name=".AddCardActivity"
                   android:windowSoftInputMode="adjustPan">
         </activity>
+        <activity android:name=".ShowCardActivity"></activity>
     </application>
 
 </manifest>

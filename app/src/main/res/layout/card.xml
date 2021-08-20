@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="10dp"
     android:layout_width="300dp"
-    android:layout_height="200dp"
+    android:layout_height="230dp"
     android:layout_marginStart="50dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="50dp"
@@ -14,9 +15,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/card_border">
+        android:layout_height="match_parent">
 
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="300dp"
+            android:layout_height="59dp"
+            android:background="@drawable/card_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="300dp"
+            android:layout_height="172dp"
+            android:layout_marginTop="121dp"
+            android:background="@drawable/card_body"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/cardTitle"
@@ -26,6 +48,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,68 +59,78 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/payButton"
-            app:layout_constraintHorizontal_bias="0.548"
+            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toEndOf="@+id/cardTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/cardLastName"
             android:layout_width="80dp"
-            android:layout_height="19dp"
+            android:layout_height="21dp"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
-            android:layout_marginBottom="16dp"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cardDescription"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.116"
             app:layout_constraintStart_toEndOf="@+id/cardFirstName"
             app:layout_constraintTop_toBottomOf="@+id/cardTitle"
-            app:layout_constraintVertical_bias="0.218" />
+            app:layout_constraintVertical_bias="0.76" />
 
         <TextView
             android:id="@+id/cardFirstName"
             android:layout_width="80dp"
-            android:layout_height="19dp"
+            android:layout_height="21dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/cardDescription"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardTitle"
-            app:layout_constraintVertical_bias="0.415" />
+            app:layout_constraintVertical_bias="0.76" />
 
         <Button
             android:id="@+id/payButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="43dp"
+            android:layout_height="44dp"
             android:padding="10dp"
             app:backgroundTint="#00FFFFFF"
             app:icon="@android:drawable/ic_menu_delete"
             app:iconPadding="8dp"
             app:iconSize="20dp"
-            app:iconTint="#000000"
+            app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintHorizontal_bias="0.972"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintVertical_bias="0.037" />
 
         <TextView
             android:id="@+id/cardDescription"
             android:layout_width="264dp"
             android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="6dp"
             android:maxLength="90"
             android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/moreInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/moreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/moreInfo"
+            app:backgroundTint="@color/cardHeader"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

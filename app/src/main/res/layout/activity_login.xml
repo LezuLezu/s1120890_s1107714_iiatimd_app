@@ -6,6 +6,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="207dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:hint="Wachtwoord..."
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout2"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout2"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="15"
+            android:inputType="textPassword"
+            android:background="@drawable/password"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="299dp"
@@ -18,8 +41,8 @@
 
         <EditText
             android:id="@+id/inputEmail"
-            android:layout_width="204dp"
-            android:layout_height="wrap_content"
+            android:layout_width="207dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/editTextTextPersonName3"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
@@ -27,28 +50,30 @@
             android:layout_alignParentRight="true"
             android:layout_marginStart="46dp"
             android:layout_marginLeft="46dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="23dp"
             android:layout_marginEnd="46dp"
             android:layout_marginRight="46dp"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:background="@drawable/stroke"
+            android:ems="15"
+            android:inputType="textEmailAddress"
+            android:hint="voorbeeld@gmail.com"/>
 
-        <EditText
-            android:id="@+id/inputPassword"
-            android:layout_width="207dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/loginButton"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="46dp"
-            android:layout_marginLeft="46dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
-            android:layout_marginBottom="43dp"
-            android:ems="10"
-            android:inputType="textPassword" />
+        <!--        <EditText-->
+        <!--            android:id="@+id/inputPassword"-->
+        <!--            android:layout_width="207dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_above="@+id/loginButton"-->
+        <!--            android:layout_alignParentStart="true"-->
+        <!--            android:layout_alignParentLeft="true"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_alignParentRight="true"-->
+        <!--            android:layout_marginStart="46dp"-->
+        <!--            android:layout_marginLeft="46dp"-->
+        <!--            android:layout_marginEnd="46dp"-->
+        <!--            android:layout_marginRight="46dp"-->
+        <!--            android:layout_marginBottom="43dp"-->
+        <!--            android:ems="10"-->
+        <!--            android:inputType="textPassword" />-->
 
         <Button
             android:id="@+id/loginButton"
@@ -66,7 +91,7 @@
             android:layout_marginBottom="30dp"
             android:text="@string/login" />
 
-<!--        MESSAGE IS HIDDEN-->
+        <!--        MESSAGE IS HIDDEN-->
         <TextView
             android:id="@+id/errorMessage"
             android:layout_width="267dp"
@@ -83,20 +108,20 @@
             android:layout_marginBottom="13dp"
             android:text="@string/errorMessage"
             android:textColor="@color/red"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/editTextTextPersonName3"
-            android:layout_width="96dp"
-            android:layout_height="29dp"
+            android:layout_width="97dp"
+            android:layout_height="21dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginLeft="46dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="157dp"
             android:layout_marginRight="157dp"
             android:ems="10"
@@ -107,7 +132,6 @@
             android:id="@+id/editTextTextPersonName4"
             android:layout_width="121dp"
             android:layout_height="29dp"
-            android:layout_above="@+id/inputPassword"
             android:layout_below="@+id/inputEmail"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
@@ -115,9 +139,9 @@
             android:layout_alignParentRight="true"
             android:layout_marginStart="46dp"
             android:layout_marginLeft="46dp"
-            android:layout_marginTop="43dp"
-            android:layout_marginEnd="131dp"
-            android:layout_marginRight="131dp"
+            android:layout_marginTop="66dp"
+            android:layout_marginEnd="129dp"
+            android:layout_marginRight="129dp"
             android:layout_marginBottom="24dp"
             android:ems="10"
             android:inputType="textPersonName"
