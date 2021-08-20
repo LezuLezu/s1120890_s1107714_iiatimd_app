@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="10dp"
     android:layout_width="300dp"
     android:layout_height="230dp"
     android:layout_marginStart="50dp"
@@ -61,7 +62,7 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/payButton"
-            app:layout_constraintHorizontal_bias="0.548"
+            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toEndOf="@+id/cardTitle"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,8 +94,8 @@
 
         <Button
             android:id="@+id/payButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="43dp"
+            android:layout_height="44dp"
             android:padding="10dp"
             app:backgroundTint="#00FFFFFF"
             app:icon="@android:drawable/ic_menu_delete"
@@ -103,10 +104,10 @@
             app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintHorizontal_bias="0.972"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintVertical_bias="0.037" />
 
         <TextView
             android:id="@+id/cardDescription"
@@ -126,8 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:text="@string/moreInfo"
-            app:backgroundTint="@color/buttonColor"
-            android:textColor="@color/black"
+            app:backgroundTint="@color/cardHeader"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
