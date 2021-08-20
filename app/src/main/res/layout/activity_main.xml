@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -17,6 +18,8 @@
 
         <Button
             android:id="@+id/addButton"
+            app:backgroundTint="@color/buttonColor"
+            android:textColor="@color/black"
             android:layout_width="45dp"
             android:layout_height="44dp"
             android:layout_alignParentStart="true"
@@ -66,4 +69,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.534" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logoutButton"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        android:layout_width="51dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="9dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        app:backgroundTint="@color/buttonColor"
+        app:icon="@drawable/logout_icon"
+        app:iconSize="30dp"
+        app:iconTint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/logoutButton"-->
+<!--        app:backgroundTint="@color/buttonColor"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_width="109dp"-->
+<!--        android:layout_height="42dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginTop="9dp"-->
+<!--        android:text="@string/logout"-->
+<!--        android:textSize="12sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

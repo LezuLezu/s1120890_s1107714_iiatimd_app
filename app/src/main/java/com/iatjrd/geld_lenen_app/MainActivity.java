@@ -1,14 +1,11 @@
 package com.iatjrd.geld_lenen_app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -16,7 +13,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -29,20 +25,17 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity{
     User user;
     Loan loan;
     String BASE_URL = "https://geld-lenen.herokuapp.com/api/user/loans";
@@ -56,7 +49,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button toAddCardButton = findViewById(R.id.addButton);
-        toAddCardButton.setOnClickListener(this);
+        toAddCardButton.setOnClickListener(this::addCardClick);
+
+
+        //LOGOUT BUTTON
+        Button logoutButton = findViewById(R.id.logoutButton);
+        Intent in = getIntent();
+        String string = in.getStringExtra("message");
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("logout", "new Logout logout_icon.png");
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Uitloggen bevestigen").
+                        setMessage("Weet u zeker dat u wil uitloggen?");
+                builder.setPositiveButton("Ja",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent logoutIntent = new Intent(getApplicationContext(),
+                                        LoginActivity.class);
+                                startActivity(logoutIntent);
+                            }
+                        });
+                builder.setNegativeButton("Nee",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
 
         user = (User) getIntent().getExtras().getSerializable("User");
 
@@ -204,8 +228,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @Override
-    public void onClick(View v) {
+    //ADD CARD BUTTON CLICKED
+    public void addCardClick(View v) {
         Intent toAddCardIntent = new Intent(this, AddCardActivity.class);
         toAddCardIntent.putExtra("User", user);
         startActivity(toAddCardIntent);
